@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ViewData";
+}
+
+<h2>View Department Data</h2>
+
+<table id="DeptTable">
+    <thead>
+        <tr>
+            <th>DeptId</th>
+            <th>DeptName</th>
+            <th>DeptHOD</th>
+            <th>DeptInaug</th>
+            <th>DeptInaugName</th>
+            <th>PassPerc</th>
+        </tr>
+    </thead>
+</table>
+
+
+<link href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#DeptTable").DataTable({
+                "ajax": {
+                    "url": "/Home/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "DeptId" },
+                    { "data": "DeptName" },
+                    { "data": "DeptHOD" },
+                    { "data": "DeptInaug" },
+                    { "data": "DeptInaugName" },
+                    { "data": "PassPerc" }
+                ],
+                "serverSide": true // Enable server-side processing if needed
+            });
+        });
+    </script>
+}
